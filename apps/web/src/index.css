@@ -1,0 +1,59 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    background-color: #16013c;
+    color: #F3F4F6;
+    font-family: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
+    /* Scamadviser ambient crimson wave effect */
+    background-image: 
+      radial-gradient(ellipse 80% 50% at 50% -10%, rgba(241, 61, 61, 0.18), transparent 75%),
+      radial-gradient(ellipse 60% 40% at 90% 20%, rgba(185, 28, 28, 0.08), transparent 60%);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  }
+}
+
+/* Scamadviser sleek card & panel helpers */
+.glass-panel {
+  background: rgba(3, 77, 125, 0.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid #23232C;
+}
+
+.glass-panel-hover {
+  transition: all 0.2s ease-in-out;
+}
+.glass-panel-hover:hover {
+  background: rgba(1, 1, 63, 0.95);
+  border-color: rgba(220, 38, 38, 0.4);
+  transform: translateY(-2px);
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #010124;
+}
+::-webkit-scrollbar-thumb {
+  background: #010126;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #DC2626;
+}
+
+/* Pulse badge animation */
+@keyframes pulse-subtle {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.75; }
+}
+.animate-pulse-subtle {
+  animation: pulse-subtle 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}

@@ -1,0 +1,11 @@
+FROM node:20-alpine
+
+WORKDIR /app
+COPY apps/gateway/package*.json ./
+RUN npm install --production
+
+COPY apps/gateway/ ./
+
+EXPOSE 5001
+CMD ["node", "server.js"]
+

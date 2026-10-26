@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  ai-service:
+    build:
+      context: ..
+      dockerfile: infra/Dockerfile.ai
+    container_name: scamshield-ai
+    ports:
+      - "8000:8000"
+    environment:
+      - PYTHONUNBUFFERED=1
+    restart: unless-stopped
+
+  gateway:
+    build:
+      context: ..
+      dockerfile: infra/Dockerfile.gateway
+    container_name: scamshield-gateway
+    ports:
+      - "5001:5001"
+    environment:
+      - PORT=5001
+      - AI_SERVICE_URL=http://ai-service:8000
+    depends_on:
+      - ai-service
+    restart: unless-stopped
+
+  web:
+    build:
+      context: ..
+      dockerfile: infra/Dockerfile.web
+    container_name: scamshield-web
+    ports:
+      - "3000:80"
+    depends_on:
+      - gateway
+    restart: unless-stopped
+
